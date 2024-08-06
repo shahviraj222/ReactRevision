@@ -32,6 +32,14 @@ function Header(props) {
                 >
                     <li className="list-none">Contact</li>
                 </NavLink>
+                <NavLink 
+                  to="/github" 
+                  className={({ isActive }) => 
+                    isActive ? "text-orange-400 font-bold" : "text-gray-200 hover:text-orange-400 transition duration-300"
+                  }
+                >
+                    <li className="list-none">github</li>
+                </NavLink>
             </nav>
         </div>
     );

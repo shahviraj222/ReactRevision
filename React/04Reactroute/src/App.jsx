@@ -4,6 +4,11 @@ import Layout from './Layout'
 import About from './components/About'
 import Home from './components/Home'
 import Contact from './components/Contact'
+import User from './components/User'
+import Github from './components/Github'
+import {Githubloader} from './components/Github'
+
+{/* <Route path='user/:userid' element={<User/>}/>  if you don't provide the id then this give error*/}
 
 function App() {
   
@@ -16,6 +21,12 @@ function App() {
         <Route path='' element={<Home/>}/>
         <Route path='about' element={<About/>}/>
         <Route path='contact' element={<Contact/>}/>
+        <Route path='user/:userid' element={<User/>}/>       
+        <Route
+        loader={Githubloader} 
+        path='github' 
+        element={<Github/>}
+        />
       </Route>
     )
   )
