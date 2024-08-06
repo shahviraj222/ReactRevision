@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create and edit the document element</title>
+</head>
+<body>
+    <ul id="language">
+        <li>JavaScript</li>
+    </ul>
+    <script>
+            function addlanguage(lang_name){
+                let li = document.createElement('li')
+                // li.innerText = lang_name  not optimum
+                li.appendChild (document.createTextNode(lang_name))
+                document.querySelector("#language").appendChild(li)
+            }
+            addlanguage("Python")
+            let existing_lan = document.querySelector("#language").querySelectorAll('li')
+            language_list = ["Python","Java","C","C#","Q","JavaScript"]
+           
+            let temp=[];
+
+                // //First Way storing Common element A && B
+                // for(let y of existing_lan)
+                //     {
+                //         for(let x of language_list)
+                //         {
+                //             if(y.innerText==x)
+                //         {
+                //             temp.push(x)
+                //         }
+                //         }
+                        
+                //     }
+                // //removing extra element
+                // const toprin = language_list.filter(element => !temp.includes(element))            
+                // toprin.forEach(element => addlanguage(element));
+
+
+                    // second way only storing element B-A
+                    let tempp=0;
+                    for(let y of language_list)
+                    {   
+                        tempp=0;
+                        for(let x of existing_lan)
+                        {
+                            tempp=tempp+1;
+                        if(y==x.innerText)
+                        {
+                            break
+                        }
+                        else if(existing_lan.length==tempp)
+                        {
+                            temp.push(y)
+                        }
+                        }
+                        
+                    }               
+            temp.forEach(element => addlanguage(element));
+    </script>
+</body>
+</html>
