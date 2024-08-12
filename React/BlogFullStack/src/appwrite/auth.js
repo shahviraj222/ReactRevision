@@ -7,26 +7,26 @@ import { Client, Account, ID } from "appwrite";
 
 
 
-export class  AuthService {
+export class AuthService {
     //client is nothing but veryfying we are going in which account..
     client = new Client();
     account;
 
-    constructor (){
+    constructor() {
         this.client
-        .setEndpoint(config.appwriteUrl)
-        .setProject(config.appwriteProjectId);
-    this.account = new Account(this.client);
+            .setEndpoint(config.appwriteUrl)
+            .setProject(config.appwriteProjectId);
+        this.account = new Account(this.client);
     }
 
-    async creatAccount(email,password,name){
+    async creatAccount(email, password, name) {
         //this try catch only give error if the we are not able to connect or run the methode (network issue , appwrite issue)
 
         try {
-            const userAccount = await this.account.create(ID.unique(),email,password,name)
+            const userAccount = await this.account.create(ID.unique(), email, password, name)
             if (userAccount) {
                 //calling login methode if account is successfully created
-                return this.login({email, password});
+                return this.login({ email, password });
             } else {
                 return userAccount;
             }
@@ -35,28 +35,28 @@ export class  AuthService {
         }
     }
 
-    async login(email,password){
+    async login(email, password) {
         try {
-            return await this.account.createEmailPasswordSession(email,password); 
+            return await this.account.createEmailPasswordSession(email, password);
         } catch (error) {
-            console.log("appwrite >> login >> error:",error)
+            console.log("appwrite >> login >> error:", error)
         }
     }
 
-    async getCurrentUser(){
+    async getCurrentUser() {
         try {
             return await this.account.get();
 
         } catch (error) {
-            console.log("appwrite >> getCurrentUser >> error:",error)
+            console.log("appwrite >> getCurrentUser >> error:", error)
         }
     }
 
-    async logout(){
+    async logout() {
         try {
             return await this.account.deleteSessions();
         } catch (error) {
-            console.log("appwrite >> logout >> error:",error)
+            console.log("appwrite >> logout >> error:", error)
         }
     }
 
@@ -64,4 +64,4 @@ export class  AuthService {
 const authService = new AuthService();
 
 export default authService;
- 
+

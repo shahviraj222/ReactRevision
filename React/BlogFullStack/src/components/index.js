@@ -4,10 +4,14 @@ import Footer from "./footer";
 import Logo from "./Logo";
 import Container from "./Container";
 import Logoutbtn from "./Logoutbtn";
+import Button from './Button'
+import Input from './Input'
 export {
     Header,
     Footer,
     Logo,
     Container,
-    Logoutbtn
+    Logoutbtn,
+    Input,
+    Button
 }

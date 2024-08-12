@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialState={
-    status : false,
-    userData : null
+const initialState = {
+    status: false,
+    userData: null
 }
 const authSlice = createSlice({
-    name:"auth",
+    name: "auth",
     initialState,
-    reducers:{
-        login: (state,action) => {
+    reducers: {
+        login: (state, action) => {
             state.status = true;
-            state.userData = action.payload; //in this state.userData you don't have to spred data it will done by it self.
+            state.userData = action.payload.userData; //in this state.userData you don't have to spred data it will done by it self.
         },
 
-        logout: (state,action) => {
+        logout: (state, action) => {
             state.status = false;
             state.userData = null;
         }
@@ -20,5 +20,5 @@ const authSlice = createSlice({
     }
 })
 
-export const {login, logout} = authSlice.actions;
+export const { login, logout } = authSlice.actions;
 export default authSlice;
