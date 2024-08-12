@@ -12,7 +12,7 @@ const authSlice = createSlice({
             state.userData = action.payload; //in this state.userData you don't have to spred data it will done by it self.
         },
 
-        logout: (state) => {
+        logout: (state,action) => {
             state.status = false;
             state.userData = null;
         }
