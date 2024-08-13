@@ -1,6 +1,6 @@
 import React from 'react';
 import appwriteService from '../appwrite/configappwrite'
-import { Link } from 'react-redux'
+import { Link } from 'react-router-dom';
 
 //appwrite id taken by always $id 
 function Postcard({ $id, title, featuredImage }) {

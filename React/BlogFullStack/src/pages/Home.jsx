@@ -11,7 +11,7 @@ function Home(props) {
         })
     }, [])
 
-    if (posts.length) {
+    if (posts.length === 0) {
         return (
             <div>
                 <Container>
