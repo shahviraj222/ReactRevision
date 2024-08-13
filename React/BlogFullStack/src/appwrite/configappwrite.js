@@ -3,40 +3,41 @@
 import config from "../config/config";                  //this is the config file contain some credential 
 import { Client, Databases, Storage, Query, ID } from "appwrite";
 
-export class Service{
+export class Service {
     client = new Client();
     databases;
     bucket;
-    constructor(){
+    constructor() {
         this.client
-        .setEndpoint(config.appwriteUrl)
-        .setProject(config.appwriteProjectId);
+            .setEndpoint(config.appwriteUrl)
+            .setProject(config.appwriteProjectId);
         this.databases = new Databases(this.client)
         this.bucket = new Storage(this.client)
     }
 
-    async createPost({title, slug, content, featuredIamge, status, userId}){
+    async createPost({ title, slug, content, featuredIamge, status, userId }) {
         try {
             return await this.databases.createPost(
                 config.appwriteDatabaseId,
                 config.appwriteCollectionId,
                 slug,                          //document id
-                {title,
-                 content,
-                 featuredIamge,
-                 status,
-                 userId   
+                {
+                    title,
+                    content,
+                    featuredIamge,
+                    status,
+                    userId
                 }                             //data to pass
             )
         } catch (error) {
-            console.log("appwrite >> createPost >> error:",error);
+            console.log("appwrite >> createPost >> error:", error);
         }
     }
 
-    async updatePost({title, slug, content, featuredIamge, status, userId}){
+    async updatePost({ title, slug, content, featuredIamge, status, userId }) {
         try {
             return await this.databases.updateDocument(
-                config.appwriteProjectId,
+                config.appwriteDatabaseId,
                 config.appwriteCollectionId,
                 slug,
                 {
@@ -47,56 +48,56 @@ export class Service{
                 }
             )
         } catch (error) {
-            console.log("appwrite >> createPost >> error:",error);
+            console.log("appwrite >> createPost >> error:", error);
         }
     }
 
-    async deletePost(slug){
+    async deletePost(slug) {
         try {
             await this.databases.deleteDocument(
-                config.appwriteProjectId,
+                config.appwriteDatabaseId,
                 config.appwriteCollectionId,
                 slug
             )
             return true
         } catch (error) {
-            console.log("appwrite >> createPost >> error:",error)
+            console.log("appwrite >> createPost >> error:", error)
             return false
         }
     }
 
-    async getPost(slug){
+    async getPost(slug) {
         try {
             return await this.databases.getDocument(
-                config.appwriteProjectId,
+                config.appwriteDatabaseId,
                 config.appwriteCollectionId,
                 slug
             )
 
         } catch (error) {
-            console.log("appwrite >> getPost >> error:",error)
+            console.log("appwrite >> getPost >> error:", error)
             return false
         }
     }
-   
+
     //you are able to apply the query with elements those are listed in the indexies in appwrite database
-    async getPosts(queries = [Query.equal("status","active")]){
+    async getPosts(queries = [Query.equal("status", "active")]) {
         try {
             return await this.databases.listDocuments(
-                config.appwriteProjectId,
+                config.appwriteDatabaseId,   //changed databaseid
                 config.appwriteCollectionId,
                 queries
                 //you can add the pagination that is in appwrite/document/advance/queries
             )
         } catch (error) {
-            console.log("appwrite >> getPosts >> error:",error)
+            console.log("appwrite >> getPosts >> error:", error)
             return false
         }
     }
 
     //Files Functions
 
-    async uploadFile(file){
+    async uploadFile(file) {
         try {
             return await this.bucket.createFile(
                 config.appwriteBucketId,
@@ -104,25 +105,25 @@ export class Service{
                 file
             )
         } catch (error) {
-            console.log("appwrite >> uploadFile >> error:",error)
+            console.log("appwrite >> uploadFile >> error:", error)
             return false
         }
     }
 
-    async deleteFile(fileId){
+    async deleteFile(fileId) {
         try {
-              await this.bucket.deleteFile(
+            await this.bucket.deleteFile(
                 config.appwriteBucketId,
                 fileId
             )
             return true
         } catch (error) {
-            console.log("appwrite >> deleteFile >> error:",error)
+            console.log("appwrite >> deleteFile >> error:", error)
             return false
         }
     }
 
-    async getFilePreview(fileId){
+    async getFilePreview(fileId) {
         return this.bucket.getFilePreview(
             config.appwriteBucketId,
             fileId
