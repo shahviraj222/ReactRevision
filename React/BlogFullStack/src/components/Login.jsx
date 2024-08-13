@@ -14,9 +14,12 @@ function Login(props) {
     const [error, setError] = useState('')
 
     const login = async (data) => {
+        authService.logout()
         setError("")
         try {
-            const session = await authService.login(data)
+            const { email, password } = data
+            // const se = await authService.logout()
+            const session = await authService.login(email, password)
             if (session) {
                 const userData = await authService.getCurrentUser()
                 if (userData) dispatch(authLogin(userData))
