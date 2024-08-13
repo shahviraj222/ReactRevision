@@ -40,6 +40,7 @@ function Home(props) {
                                 $id={post.$id}
                                 title={post.title}
                                 featuredImage={post.featuredImage}
+                                content={post.content}
                             />
                         </div>
                     ))}

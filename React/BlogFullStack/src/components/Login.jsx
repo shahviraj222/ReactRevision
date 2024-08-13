@@ -22,7 +22,10 @@ function Login(props) {
             const session = await authService.login(email, password)
             if (session) {
                 const userData = await authService.getCurrentUser()
-                if (userData) dispatch(authLogin(userData))
+                if (userData) {
+                    console.log(userData)
+                    dispatch(authLogin(userData))
+                }
                 navigate('/')                 //if use link then we have to click on the element "navigate" directly programatically
             }
         } catch (error) {

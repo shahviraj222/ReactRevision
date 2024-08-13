@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-export default function Protected({ children, authentication }) {
+export default function Protected({ children, authentication = true }) {
     const navigate = useNavigate()
     const [loader, setLoder] = useState(true)
-    const authStatus = useSelector((state) => state.status)      //some time the auth.status not working put only state.status
+    const authStatus = useSelector((state) => state.auth.status)      //some time the auth.status not working put only state.status
 
     useEffect(() => {
 

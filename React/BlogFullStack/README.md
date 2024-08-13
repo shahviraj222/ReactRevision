@@ -1,8 +1,19 @@
-# React + Vite
+# Blog Application 
+## Functionality
+1) User : (Add Post , See Post And Update Their Post)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Technology Used
+1)Redux
 
-Currently, two official plugins are available:
+2)React-Router
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3)React-Hook-Form
+
+4)tinymce/tinymce-react (Editor OpenSource)
+
+5)appwrite (Backend Provider OpenSource)
+
+
+For Guest User:
+
+![alt text](<Screenshot 2024-08-14 at 12.01.10 AM.png>)

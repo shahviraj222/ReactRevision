@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import appwriteService from '../appwrite/configappwrite';
 import { Link } from 'react-router-dom';
 
-function PostCard({ $id, title, featuredImage }) {
+function PostCard({ $id, title, featuredImage, content }) {
     const [previewUrl, setPreviewUrl] = useState('');
     const [error, setError] = useState(null);
 
@@ -37,6 +37,7 @@ function PostCard({ $id, title, featuredImage }) {
                     {error && <p className='text-red-500'>{error}</p>}
                 </div>
                 <h2 className='text-xl font-bold'>{title}</h2>
+                <h2 className='text-xl font-bold'>{content}</h2>
             </div>
         </Link>
     );

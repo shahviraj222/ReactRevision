@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';    //if you want to divert forcefully then it is used
 
 function Header(props) {
-  const authStatus = useSelector((state) => state.status)   // state.auth = name of the slicer
+  const authStatus = useSelector((state) => state.auth.status)   // state.auth = name of the slicer
+  console.log(authStatus)
   const navigate = useNavigate()
   const navItems = [
     {
