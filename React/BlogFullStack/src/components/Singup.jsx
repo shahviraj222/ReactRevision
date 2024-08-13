@@ -14,8 +14,11 @@ function SingUp(props) {
 
     const signup = async (data) => {
         setError("")
+        console.log(data);
         try {
-            const usercrete = await authService.creatAccount(data)
+            const { name, email, password } = data;
+            const usercrete = await authService.creatAccount(email, name, password)
+            console.log("creatAccount is called")
             if (usercrete) {
                 const userData = await authService.getCurrentUser()
                 if (userData) dispatch(login(userData))
@@ -68,16 +71,23 @@ function SingUp(props) {
                             })}
                         />
 
+                        {/* in react hook form password is required... */}
                         <Input
-                            label="password"
+                            label="Password"
                             placeholder="Enter Password"
                             type="password"
-                            {
-                            ...register("password", {
-                                required: true
-                            })
-                            }
+                            {...register("password", {
+                                required: "Password is required",
+                                minLength: {
+                                    value: 8,
+                                    message: "Password must be at least 8 characters long"
+                                },
+                                validate: {
+                                    notCommon: value => !/^(password|12345678|qwerty|letmein|123123)$/.test(value) || "Please choose a more secure password"
+                                }
+                            })}
                         />
+
                         <Button
                             type='submit'
                         >CreateAccount</Button>
