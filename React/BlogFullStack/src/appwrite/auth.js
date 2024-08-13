@@ -24,6 +24,7 @@ export class AuthService {
 
         try {
             const userAccount = await this.account.create(ID.unique(), email, password, name)
+            console.log("Inside the createAccount")
             if (userAccount) {
                 //calling login methode if account is successfully created
                 return this.login({ email, password });

@@ -1,22 +1,45 @@
-import React from 'react';
-import appwriteService from '../appwrite/configappwrite'
+import React, { useState, useEffect } from 'react';
+import appwriteService from '../appwrite/configappwrite';
 import { Link } from 'react-router-dom';
 
-//appwrite id taken by always $id 
-function Postcard({ $id, title, featuredImage }) {
+function PostCard({ $id, title, featuredImage }) {
+    const [previewUrl, setPreviewUrl] = useState('');
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchPreview = async () => {
+            try {
+                const preview = await appwriteService.getFilePreview(featuredImage);
+                if (preview && preview.href) {
+                    setPreviewUrl(preview.href);
+                } else {
+                    setError('Preview URL is missing');
+                }
+            } catch (error) {
+                setError(`Error fetching file preview: ${error.message}`);
+            }
+        };
+
+        if (featuredImage) {
+            fetchPreview();
+        }
+    }, [featuredImage]);
+
     return (
         <Link to={`/post/${$id}`}>
             <div className='w-full bg-gray-100 rounded-xl p-4'>
                 <div className='w-full justify-center mb-4'>
-                    <img src={appwriteService.getFilePreview(featuredImage)} alt={title}
-                        className='rounded-xl' />
+                    <img
+                        src={previewUrl || 'placeholder-image-url.jpg'} // Use a placeholder image if previewUrl is empty
+                        alt={title}
+                        className='rounded-xl'
+                    />
+                    {error && <p className='text-red-500'>{error}</p>}
                 </div>
-                <h2
-                    className='text-xl font-bold'
-                >{title}</h2>
+                <h2 className='text-xl font-bold'>{title}</h2>
             </div>
         </Link>
     );
 }
 
-export default Postcard;
+export default PostCard;
