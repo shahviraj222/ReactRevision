@@ -7,17 +7,24 @@ import { useSelector } from "react-redux";
 
 export default function Post() {
     const [post, setPost] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState('');
     const { slug } = useParams();
     const navigate = useNavigate();
 
     const userData = useSelector((state) => state.auth.userData);
 
-    const isAuthor = post && userData ? post.userId === userData.$id : false;
+    const isAuthor = post && userData ? post.userId === userData.userData.$id : false;
 
     useEffect(() => {
+
         if (slug) {
             appwriteService.getPost(slug).then((post) => {
-                if (post) setPost(post);
+                console.log(post.featuredImage)
+                if (post) {
+                    setPost(post)
+                    appwriteService.getFilePreview(post.featuredImage).then((x) => { setPreviewUrl(x) })
+
+                }
                 else navigate("/");
             });
         } else navigate("/");
@@ -37,7 +44,7 @@ export default function Post() {
             <Container>
                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
                     <img
-                        src={appwriteService.getFilePreview(post.featuredImage)}
+                        src={previewUrl || 'placeholder-image-url.jpg'}
                         alt={post.title}
                         className="rounded-xl"
                     />

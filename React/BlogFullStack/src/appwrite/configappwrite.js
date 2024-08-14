@@ -15,16 +15,17 @@ export class Service {
         this.bucket = new Storage(this.client)
     }
 
-    async createPost({ title, slug, content, featuredIamge, status, userId }) {
+    async createPost({ title, slug, content, featuredImage, status, userId }) {
+        console.log(title, content, featuredImage, status, userId)
         try {
-            return await this.databases.createPost(
+            return await this.databases.createDocument(
                 config.appwriteDatabaseId,
                 config.appwriteCollectionId,
                 slug,                          //document id
                 {
                     title,
                     content,
-                    featuredIamge,
+                    featuredImage,
                     status,
                     userId
                 }                             //data to pass
@@ -34,12 +35,13 @@ export class Service {
         }
     }
 
-    async updatePost({ title, slug, content, featuredIamge, status, userId }) {
+    async updatePost({ title, slug, content, featuredIamge, status, userId, documentId }) {
+        console.log("Inside Update DocumentId:", documentId)
         try {
             return await this.databases.updateDocument(
                 config.appwriteDatabaseId,
                 config.appwriteCollectionId,
-                slug,
+                documentId,
                 {
                     title,
                     content,
@@ -48,7 +50,7 @@ export class Service {
                 }
             )
         } catch (error) {
-            console.log("appwrite >> createPost >> error:", error);
+            console.log("appwrite >> Updatedocument >> error:", error);
         }
     }
 

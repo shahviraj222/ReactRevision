@@ -12,6 +12,7 @@ import Home from './pages/Home.jsx'
 import AllPosts from "./pages/AllPosts";
 import AddPost from './pages/AddPost.jsx'
 import EditPost from './pages/EditPost.jsx'
+import Post from './pages/Post.jsx'
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: "/al-posts",
+        path: "/all-posts",
         element: (
           <AuthLayout authentication>
             <AllPosts />
@@ -62,7 +63,14 @@ const router = createBrowserRouter([
           </AuthLayout>
         )
       },
-
+      {
+        path: "/post/:slug",
+        element: (
+          <AuthLayout authentication>
+            <Post />
+          </AuthLayout>
+        )
+      },
     ]
   },
 ]

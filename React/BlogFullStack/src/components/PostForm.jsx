@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "../components/index";
 import appwriteService from "../appwrite/configappwrite";
@@ -17,6 +17,9 @@ export default function PostForm({ post }) {
 
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);       //some time auth.userData
+    console.log("Outside the function", userData.userData.$id)    //to access the object this is default behaviour of the useSelector.....
+    // let a = { ...userData }
+    // console.log("Outside Funtion", a.$id)
 
     const submit = async (data) => {
         if (post) {
@@ -25,10 +28,17 @@ export default function PostForm({ post }) {
             if (file) {
                 appwriteService.deleteFile(post.featuredImage);
             }
-
-            const dbPost = await appwriteService.updatePost(post.$id, {
-                ...data,
+            // title, slug, content, featuredIamge, status, userId, documentId 
+            // console.log("DATA", data)
+            // console.log("Document ID ", post.$id)
+            const dbPost = await appwriteService.updatePost({
+                title: data.title,
+                slug: data.slug,
+                content: data.content,
                 featuredImage: file ? file.$id : undefined,
+                status: data.status,
+                userId: userData.userData.$id,
+                documentId: post.$id,
             });
 
             if (dbPost) {
@@ -40,7 +50,11 @@ export default function PostForm({ post }) {
             if (file) {
                 const fileId = file.$id;
                 data.featuredImage = fileId;
-                const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
+                // console.log(data.featuredImage)
+                // console.log(data)
+                console.log(userData.$id)
+                // 
+                const dbPost = await appwriteService.createPost({ ...data, userId: userData.userData.$id });
 
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);

@@ -37,7 +37,7 @@ function PostCard({ $id, title, featuredImage, content }) {
                     {error && <p className='text-red-500'>{error}</p>}
                 </div>
                 <h2 className='text-xl font-bold'>{title}</h2>
-                <h2 className='text-xl font-bold'>{content}</h2>
+                <h2 className='text-sm font-bold'>{content}</h2>
             </div>
         </Link>
     );
