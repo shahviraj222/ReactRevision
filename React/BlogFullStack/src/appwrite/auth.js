@@ -27,7 +27,8 @@ export class AuthService {
             console.log("Inside the createAccount")
             if (userAccount) {
                 //calling login methode if account is successfully created
-                return this.login({ email, password });
+                // return this.login(email, password); Because database updatation  take some time...
+                return userAccount
             } else {
                 return userAccount;
             }

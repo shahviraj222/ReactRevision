@@ -19,12 +19,7 @@ function SingUp(props) {
             const { name, email, password } = data;
             const usercrete = await authService.creatAccount(email, name, password)
             console.log("creatAccount is called")
-            if (usercrete) {
-                const userData = await authService.getCurrentUser()
-                if (userData) dispatch(login(userData))
-                navigate('/')
-
-            }
+            navigate('/login')
         } catch (error) {
             setError(error.message)
         }
@@ -82,9 +77,7 @@ function SingUp(props) {
                                     value: 8,
                                     message: "Password must be at least 8 characters long"
                                 },
-                                validate: {
-                                    notCommon: value => !/^(password|12345678|qwerty|letmein|123123)$/.test(value) || "Please choose a more secure password"
-                                }
+
                             })}
                         />
 
