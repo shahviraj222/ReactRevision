@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import appwriteService from '../appwrite/configappwrite';
 import { Link } from 'react-router-dom';
+import parse from 'html-react-parser';
 
 function PostCard({ $id, title, featuredImage, content }) {
     const [previewUrl, setPreviewUrl] = useState('');
@@ -37,7 +38,9 @@ function PostCard({ $id, title, featuredImage, content }) {
                     {error && <p className='text-red-500'>{error}</p>}
                 </div>
                 <h2 className='text-xl font-bold'>{title}</h2>
-                <h2 className='text-sm font-bold'>{content}</h2>
+                <div className='text-sm'>
+                    {parse(content)} {/* Render the HTML content using html-react-parser */}
+                </div>
             </div>
         </Link>
     );
