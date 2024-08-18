@@ -19,17 +19,17 @@ https://drive.google.com/file/d/1HuSYmJAngtlXF2jWZNai3KMBatS58SjV/view?usp=shari
 
 For Guest User:
 
-![alt text](<Screenshot 2024-08-14 at 12.01.10 AM.png>)
+![alt text](<Screenshot 2024-08-18 at 1.49.22 PM.png>)
 
 For Login User:
 
-![alt text](<Screenshot 2024-08-16 at 7.06.35 PM.png>)
+![alt text](<Screenshot 2024-08-18 at 1.35.15 PM.png>)
 
 Edit Delete Post For Authenticated User:
 
-![alt text](<Screenshot 2024-08-16 at 7.06.55 PM.png>)
+![alt text](<Screenshot 2024-08-18 at 1.35.40 PM.png>)
 
 Add Post :
 
-![alt text](<Screenshot 2024-08-16 at 7.07.14 PM.png>)
+![alt text](<Screenshot 2024-08-18 at 1.22.53 PM.png>)
 
