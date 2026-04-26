@@ -16,3 +16,11 @@ person2 = {
 
 person.greet();
 person2.greet();
+
+function test() {
+  console.log(arguments);
+}
+
+const test = () => {
+  console.log(arguments); // ❌ error
+};
