@@ -1,0 +1,11 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "viraj",
+      "database": "${workspaceFolder:DBMS}/basics.db"
+    }
+  ],
+  "sqltools.useNodeRuntime": true
+}
