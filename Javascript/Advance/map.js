@@ -9,6 +9,3 @@ a = a.map(function (a) {
 console.log(a);
 
 a = [1, 23, 34, 45, 123, 12];
-
-
-
