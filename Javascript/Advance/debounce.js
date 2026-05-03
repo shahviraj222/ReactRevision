@@ -29,3 +29,5 @@ console.log("End");
 // start
 // end
 // Hello after 2 seconds
+
+// debounce important in applications
