@@ -20,7 +20,7 @@ person2.greet();
 // arrrow funcitonexp2
 // arrow funciton uses lexical this
 
-name = "viraj";
+this.name = "viraj";
 
 person3 = {
   name: "viraj",
