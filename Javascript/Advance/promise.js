@@ -1,3 +1,5 @@
+// async await and promise both are sames
+
 const promise1 = new Promise(function (resolve, reject) {
   setTimeout(function () {
     error = true;
@@ -25,3 +27,5 @@ promise1
   .then(function (username) {
     console.log(username);
   });
+
+//
