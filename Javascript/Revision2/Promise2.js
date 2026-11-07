@@ -15,3 +15,24 @@ async function runAgent() {
 // Solutions
 
 const [weather1, news1] = Promise.all([getWeather(), getNews()]);
+
+// Perfetly runing
+
+function runTool(name, delay) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(name + " completed");
+    }, delay);
+  });
+}
+
+async function runAgent() {
+  const results = await Promise.all([
+    runTool("Weather", 2000),
+    runTool("News", 3000),
+  ]);
+
+  console.log(results);
+}
+
+runAgent();
