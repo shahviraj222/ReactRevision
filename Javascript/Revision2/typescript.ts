@@ -51,6 +51,6 @@ let b: unknown
 // 4 Type narrowing
 
 if (typeof a == "string"){
-  console.log(a.toLocaleLowerCase())
+  console.log(a.toLocaleLowerCase)
 }
 
