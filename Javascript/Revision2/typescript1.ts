@@ -7,7 +7,7 @@
 //   tools: Object;
 // };
 
-// TypeAliase
+// 2 TypeAliase
 
 type ToolResult = {
   result: boolean;
