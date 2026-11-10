@@ -1,4 +1,4 @@
-// normal promise
+// 1 normal promise
 
 promise1 = new Promise(function (resolve, reject) {
   setTimeout(() => {
