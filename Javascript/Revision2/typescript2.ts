@@ -6,7 +6,7 @@ let seatchoise : "alise" | "middle" | "window" = "alise"
 
 let st: string | number = 234
 
-if (typeof st === "string"){v
+if (typeof st === "string"){
     console.log("I am String")
 }
 
@@ -99,4 +99,28 @@ class marks implements examples {
     name: "Viraj" | "vimal" = "Viraj"
 }
 
+// 10 Optional , Required, that kind of the functionality we have
 
+type score = {
+    marks:number,
+    grade:string,
+    rank?:number
+}
+
+// rank is optional
+let m1:score = {
+    marks:35,
+    grade:"D",
+}
+
+// here althought the rank is define optional in score but we write the Required keyword
+let m2:Required<score> = {
+    marks:90,
+    grade:"A",
+    rank:1
+}
+
+// now all the fields become the non required optional even ig you dont write anything it is okay.
+let m3:Partial<score> = {
+
+}
