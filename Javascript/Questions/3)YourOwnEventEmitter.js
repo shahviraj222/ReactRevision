@@ -46,6 +46,9 @@ function off(name, callback) {
 }
 
 // this is doing nothing but simple thingsjust register the funciton only to run for one time then atuomatically we have to delte it also
+// approach 1 : change the registry with flag and then change the emit funciton
+// approach 2 : If you dont want to cbange then just do one thing wrap your funciton
+
 function once(name, callback) {
   function warpper(data) {
     off(name, warpper);
