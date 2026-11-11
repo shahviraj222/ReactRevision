@@ -1,0 +1,9 @@
+
+For your Every coding session, focus on three habits:
+
+1. Before every await, ask: What does this function return?
+2. Before every return, ask: Which function am I returning from?
+3. Before writing a loop, trace: What happens during the first, second, and final iteration?
+
+
+These three habits would have prevented many of today's mistakes.
