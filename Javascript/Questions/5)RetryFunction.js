@@ -29,7 +29,7 @@ async function retry(fn, maxAttempts, delay) {
     } catch (error) {
       err = new Error(error);
     }
-    if (attempts + 1 < maxAttempts) {
+    if (attempts < maxAttempts) {
       await waitDelay(delay);
     }
   }
