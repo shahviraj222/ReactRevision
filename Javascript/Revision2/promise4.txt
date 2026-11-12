@@ -1,0 +1,93 @@
+
+/**
+ * TOPIC: Does a Promise automatically become its resolved value?
+ *
+ * MY QUESTION:
+ * Suppose I have a registry object that stores the result of
+ * a callback function. The callback returns a Promise.
+ *
+ * Initially, registry.callback.data contains a pending Promise.
+ *
+ * After the Promise resolves, does registry.callback.data
+ * automatically change to the resolved value?
+ *
+ * ANSWER: NO!
+ *
+ * A Promise remains a Promise, even after it resolves.
+ * Only its internal state changes:
+ *
+ * Promise { <pending> } -> Promise { "SUCCESS" }
+ *
+ * To access its resolved value, use await or .then().
+ */
+
+function callback() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("SUCCESS");
+    }, 2000);
+  });
+}
+
+async function main() {
+  // STEP 1: Create a registry that stores the callback result.
+  const registry = {
+    callback: {
+      data: callback()
+    }
+  };
+
+  // STEP 2: Before the Promise resolves.
+  console.log("Before:", registry.callback.data);
+  // Promise { <pending> }
+
+  // STEP 3: Wait for the Promise to resolve.
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+
+  // STEP 4: Check the original property again.
+  console.log("After:", registry.callback.data);
+  // Promise { 'SUCCESS' }
+  // IMPORTANT: It is STILL a Promise object!
+
+  // STEP 5: Access the resolved value using await.
+  const result = await registry.callback.data;
+
+  console.log("Resolved value:", result);
+  // SUCCESS
+
+  // STEP 6: Check whether await modified the registry.
+  console.log("Original property:", registry.callback.data);
+  // Promise { 'SUCCESS' }
+  // The original property remains unchanged.
+
+  // STEP 7: Explicitly replace the Promise with its value.
+  registry.callback.data = await registry.callback.data;
+
+  console.log("After reassignment:", registry.callback.data);
+  // SUCCESS (now a string, not a Promise)
+}
+
+main();
+
+/**
+ * KEY TAKEAWAYS:
+ *
+ * 1. Calling a function that returns a Promise stores
+ *    a Promise object, not its eventual resolved value.
+ *
+ * 2. When the Promise resolves, its internal state changes,
+ *    but the registry property still references that Promise.
+ *
+ * 3. await promise -> gives the resolved value.
+ *
+ * 4. .then(value => ...) -> accesses the resolved value.
+ *
+ * 5. await DOES NOT automatically modify the original variable.
+ *
+ * 6. To replace the Promise with its resolved value:
+ *
+ *    registry.callback.data = await registry.callback.data;
+ *
+ * MEMORY RULE:
+ * "A resolved Promise is still a Promise."
+ */

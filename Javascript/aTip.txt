@@ -1,4 +1,4 @@
-
+Tip1:
 For your Every coding session, focus on three habits:
 
 1. Before every await, ask: What does this function return?
@@ -7,3 +7,19 @@ For your Every coding session, focus on three habits:
 
 
 These three habits would have prevented many of today's mistakes.
+
+
+Tip2:
+How do you identify edge cases before writing code?
+
+That's another software engineering skill we should practice.
+
+From now on, for each challenge, we'll follow this process:
+1. Understand the requirements — What must the program do?
+2. Identify edge cases — What happens with duplicates, missing values, empty inputs, and failures?
+3. Design the logic — Choose data structures and algorithms.
+4. Implement — Write the code yourself.
+5. Test — Verify normal and edge cases.
+
+
+Tip3:
