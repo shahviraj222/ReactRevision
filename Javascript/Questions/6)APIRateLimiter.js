@@ -4,7 +4,7 @@
 
 // how to serach in the object for some name
 
-// 1 Object.hasOqn(object varible, key to search)
+// 1 Object.hasown(object varible, key to search)
 // 2 key in object varible
 
 function createRateLimiter(maxRequests, windowMs) {

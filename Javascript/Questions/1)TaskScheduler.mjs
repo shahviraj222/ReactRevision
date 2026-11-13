@@ -1,14 +1,7 @@
 // Build a Task Scheduler
 // You have 5 API requests to execute, but your server allows only 2 requests to run simultaneously.
 
-const tasks = [
-  () => fetchData("User 1", 3000),
-  () => fetchData("User 2", 1000),
-  () => fetchData("User 3", 2000),
-  () => fetchData("User 4", 1000),
-  () => fetchData("User 5", 2000),
-];
-
+// api function
 function fetchData(name, delay) {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -18,6 +11,16 @@ function fetchData(name, delay) {
   });
 }
 
+// task to perform
+const tasks = [
+  () => fetchData("User 1", 3000),
+  () => fetchData("User 2", 1000),
+  () => fetchData("User 3", 2000),
+  () => fetchData("User 4", 1000),
+  () => fetchData("User 5", 2000),
+];
+
+// runTask takes the array of task to perform and the allowed task concurrentt
 async function runTasks(tasks, limit) {
   // Write your code here
 
