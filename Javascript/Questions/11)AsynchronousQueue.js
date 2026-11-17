@@ -10,6 +10,10 @@
 // start thinking first in normal
 // we have to run the p.next for evry time because msg can arrive at any time and we want to recive it live
 
+// java scipt leanring
+// for (let callback in listener) given the index
+//  for (let callback of listener) give the value at that index
+
 function createAsyncQueue() {
   // Your logic goes here
   let msg = [];
@@ -45,8 +49,7 @@ function createAsyncQueue() {
 
 const queue = createAsyncQueue();
 
-//  start making the bots                    -- always listen to the msgs
-
+//  version 1 :start making the bots                    -- always listen to the msgs
 async function startbot() {
   while (true) {
     let p1 = await queue.next();
@@ -54,11 +57,43 @@ async function startbot() {
   }
 }
 
-let p2 = startbot();
-queue.push("A");
-queue.push("B");
-queue.push("C");
+// let p2 = startbot();
+// queue.push("A");
+// queue.push("B");
+// queue.push("C");
 
+// version 2: bot listen and also perform fucntion you want to perform
+function startbot2(queue) {
+  let listener = [];
+  async function listen(callback) {
+    while (true) {
+      let msg = await queue.next();
+
+      // Notify everyone listening
+      for (let callback of listener) {
+        callback(msg);
+      }
+    }
+  }
+  listen(); // strat listening forever
+  return {
+    onMessage(callback) {
+      listener.push(callback);
+    },
+  };
+}
+
+let queue1 = createAsyncQueue();
+
+let p1 = startbot2(queue1);
+
+p1.onMessage((msg) => {
+  console.log("hello You recived msg from :", msg);
+});
+
+queue1.push("viraj");
+
+// Basic one msg comes and first msg listen building thinking
 // noraml behaviour
 // queue.push("A");
 // queue.push("B");
