@@ -11,6 +11,14 @@
 // - Logging service: Store the event details.
 // Instead of the AI agent calling all three services directly, it publishes an event.
 
+// in publisher we want to run the array of function
+// we want to retunr but if we apply for loop it will only return once and the reamining function not run ? so how to do this ???
+
+//solution:
+// 1 store in array and then return array    (but what if the function is added in array at multiple state??) we dont want to share all [result]
+// 2 You can use the way we did in publish returning the promise using map, and then simultanously we are runing all promise
+//  batter understanding see the async function publish(topic, data)
+
 function createMessageBroker() {
   const subscribers = new Map();
 
